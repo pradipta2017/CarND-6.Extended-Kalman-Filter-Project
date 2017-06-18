@@ -1,4 +1,5 @@
 #include "kalman_filter.h"
+#include "tools.h"
 
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
@@ -64,6 +65,9 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
 	z_pred << rho, theta, rho_dot;
 
 	VectorXd y = z - z_pred;
+	
+	NormalizeAngle(y(1));
+
 	MatrixXd Ht = H_.transpose();
 	MatrixXd S = H_ * P_ * Ht + R_;
 	MatrixXd Si = S.inverse();
@@ -77,3 +81,13 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
 	P_ = (I - K * H_) * P_;
 
 }
+
+void KalmanFilter::NormalizeAngle(double& phi) {
+	/**
+	TODO:
+	* Calculate a Jacobian here.
+	*/
+	phi = atan2(sin(phi), cos(phi));
+}
+
+
