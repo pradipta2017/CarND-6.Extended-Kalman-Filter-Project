@@ -62,8 +62,8 @@ MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
 	float pos2 = (px * px) + (py * py);
 	float Hj00 = px / (sqrt(pos2));
 	float Hj01 = py / (sqrt(pos2));
-	float Hj10 = px / pos2;
-	float Hj11 = py / pos2;
+	float Hj10 = -py / pos2;
+	float Hj11 = px / pos2;
 	float Hj20 = (py*(vx*py - vy*px)) / pow(pos2, 1.5);
 	float Hj21 = (px*(vy*px - vx*py)) / pow(pos2, 1.5);
 	
@@ -73,3 +73,5 @@ MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
 	
 	return Hjacobian;
 }
+
+
