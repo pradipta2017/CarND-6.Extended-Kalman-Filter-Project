@@ -95,7 +95,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 		const float m2 = measurement_pack.raw_measurements_[0] * sin(measurement_pack.raw_measurements_[1]);
 		const double vx = measurement_pack.raw_measurements_[2] * cos(measurement_pack.raw_measurements_[1]);
 		const double vy = measurement_pack.raw_measurements_[2] * sin(measurement_pack.raw_measurements_[1]);
-		xfusion_ << m1, m2, 1.35, 0.05;
+		xfusion_ << m1, m2, vx, vy;
 		ekf_.Init(xfusion_, Pfusion_, Ffusion_, Hj_, R_radar_, Qfusion_);
     }
     else if (measurement_pack.sensor_type_ == MeasurementPackage::LASER) {
