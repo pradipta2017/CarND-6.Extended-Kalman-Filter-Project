@@ -65,7 +65,7 @@ public:
   void UpdateEKF(const Eigen::VectorXd &z);
 
   /**
-  * A helper method to calculate Jacobians.
+  * A helper method to normalize the difference angle.
   */
   void  NormalizeAngle(double& phi);
 

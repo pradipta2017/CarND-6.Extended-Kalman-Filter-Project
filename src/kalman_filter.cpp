@@ -85,7 +85,7 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
 void KalmanFilter::NormalizeAngle(double& phi) {
 	/**
 	TODO:
-	* Calculate a Jacobian here.
+	* Normalize the difference angle between -pi to pi.
 	*/
 	phi = atan2(sin(phi), cos(phi));
 }
